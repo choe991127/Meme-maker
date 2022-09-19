@@ -9,6 +9,23 @@
 </head>
 <body>
     <canvas></canvas>
-    <script src="js/app.js"></script>
+    <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"/>line width
+    <input type="color" id="color" />
+    <div>
+    <div class="color-option" style="background-color:#81ecec" data-color="#81ecec"> </div>
+    <div class="color-option" style="background-color:#74b9ff" data-color="#74b9ff"> </div>
+    <div class="color-option" style="background-color:#a29bfe" data-color="#a29bfe"> </div>
+    <div class="color-option" style="background-color:#55efc4" data-color="#55efc4"> </div>
+    <div class="color-option" style="background-color:#fab1a0" data-color="#fab1a0"> </div>
+    <div class="color-option" style="background-color:#fd79a8" data-color="#fd79a8"> </div>
+    <div class="color-option" style="background-color:#fdcb6e" data-color="#fdcb6e"> </div>
+    <div class="color-option" style="background-color:#ffeaa7" data-color="#ffeaa7"> </div>
+    <div class="color-option" style="background-color:#2d3436 " data-color="#2d3436"> </div>
+    
+</div>
+<button id="mode-btn">Fill</button>
+<button id="destroy-btn">Destroy</button>
+<button id="erase-btn">Erase</button>
 </body>
+<script src="js/app.js"></script>
 </html>
