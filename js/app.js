@@ -1,4 +1,4 @@
-const colorOptions=Array.from(document.getElementsByClassName("color-option"));
+const colorOptions=Array.from(document.getElementsByClassName("color-option"));// forEach가 필요해서 이 collection을 Array.from()으로 배열로 바꿈.
 const color=document.getElementById("color");
 const lineWidth=document.getElementById("line-width");
 const canvas=document.querySelector("canvas");
@@ -17,7 +17,7 @@ const ctx=canvas.getContext("2d");
 //
 canvas.width=CANVAS_WIDTH;
 canvas.height=CANVAS_HEIGHT;
-ctx.lineWidth=lineWidth.value;
+ctx.lineWidth=lineWidth.value; 
 // Painting --------------------------------------------------------
 let isPainting=false;
 function onMove(event){
@@ -95,8 +95,10 @@ function onCanvasClick(event){
 //eraser--------------------------------------------------------------
 destroyBtn.addEventListener("click",onDestroyClick);
 function onDestroyClick(event){
+    const backColor=ctx.fillStyle;
     ctx.fillStyle="white";
     ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+    ctx.fillStyle=backColor;  //추가한 이유는 디스트로이 버튼 후 fill을 바로 하면 실행되지않고 draw만 원래 색으로 실행됨.fill을 하려면 다시 한번 컬러를 지정해야하기때문에 원래 있던 색을 복구시킴.
 }
 
 eraserBtn.addEventListener("click",onEraserClick);
@@ -105,5 +107,7 @@ function onEraserClick(event){
     ctx.strokeStyle="white";
     isFilling=false;
     modeBtn.innerText="Fill";
-    
+    color.value="#ffffff";// erase모드 일 때 색에 혼동을 줄이기위해 표시되는 색을 white로 만듬.
     }
+
+    
