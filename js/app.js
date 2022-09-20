@@ -5,6 +5,7 @@ const canvas=document.querySelector("canvas");
 const modeBtn=document.getElementById("mode-btn");
 const destroyBtn=document.getElementById("destroy-btn");
 const eraserBtn=document.getElementById("erase-btn");
+const fileInput=document.getElementById("file");
 
 const CANVAS_WIDTH=800;
 const CANVAS_HEIGHT=800;
@@ -110,4 +111,18 @@ function onEraserClick(event){
     color.value="#ffffff";// erase모드 일 때 색에 혼동을 줄이기위해 표시되는 색을 white로 만듬.
     }
 
-    
+//meme maker--------------------------------------------------------------------------------------------------------------------------------------------------------------
+fileInput.addEventListener("change",onFileChange);
+
+function onFileChange(event){
+    const file=event.target.files[0]; //이미지 파일 선택시 파일이 저장된곳
+    const url=URL.createObjectURL(file);//이미지 파일의 url을 얻어낸다.브라우저에 만듬.
+    const image= new Image()   //<img src=""> HTML 에 이것과 같다
+    image.src=url;  
+    image.onload=function(){ //이건 eventListner과 같다.
+        ctx.drawImage(image,0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+        fileInput.value=null; //새로운 이미지파일을 넣길 원할 수 있기때문.비워놓는다.
+    }
+}
+
+
