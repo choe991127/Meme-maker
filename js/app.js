@@ -6,6 +6,8 @@ const modeBtn=document.getElementById("mode-btn");
 const destroyBtn=document.getElementById("destroy-btn");
 const eraserBtn=document.getElementById("erase-btn");
 const fileInput=document.getElementById("file");
+const textInput=document.getElementById("text");
+const saveBtn=document.getElementById("save");
 
 const CANVAS_WIDTH=800;
 const CANVAS_HEIGHT=800;
@@ -13,12 +15,12 @@ const CANVAS_HEIGHT=800;
 //context를 자주 써야하기 때문에 쓰기쉬운 ctx로 정의
 //2 option 있다 1번2D 2번webgl,bitmaprenderer 2번은 3D위한것
 const ctx=canvas.getContext("2d"); 
-
 //js에도 width,height정의하는 이유는
 //
 canvas.width=CANVAS_WIDTH;
 canvas.height=CANVAS_HEIGHT;
 ctx.lineWidth=lineWidth.value; 
+ctx.lineCap="round";  //선의 끝이 둥글게 만든다.
 // Painting --------------------------------------------------------
 let isPainting=false;
 function onMove(event){
@@ -96,10 +98,10 @@ function onCanvasClick(event){
 //eraser--------------------------------------------------------------
 destroyBtn.addEventListener("click",onDestroyClick);
 function onDestroyClick(event){
-    const backColor=ctx.fillStyle;
+    ctx.save();
     ctx.fillStyle="white";
     ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
-    ctx.fillStyle=backColor;  //추가한 이유는 디스트로이 버튼 후 fill을 바로 하면 실행되지않고 draw만 원래 색으로 실행됨.fill을 하려면 다시 한번 컬러를 지정해야하기때문에 원래 있던 색을 복구시킴.
+    ctx.restore();  //추가한 이유는 디스트로이 버튼 후 fill을 바로 하면 실행되지않고 draw만 원래 색으로 실행됨.fill을 하려면 다시 한번 컬러를 지정해야하기때문에 원래 있던 색을 복구시킴.
 }
 
 eraserBtn.addEventListener("click",onEraserClick);
@@ -120,9 +122,32 @@ function onFileChange(event){
     const image= new Image()   //<img src=""> HTML 에 이것과 같다
     image.src=url;  
     image.onload=function(){ //이건 eventListner과 같다.
-        ctx.drawImage(image,0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+        ctx.drawImage(image,0,0,CANVAS_WIDTH,CANVAS_HEIGHT); //이미지 불러오고 배치하고 크기설정.
         fileInput.value=null; //새로운 이미지파일을 넣길 원할 수 있기때문.비워놓는다.
     }
 }
 
 
+// Add Text-------------------------------------------------------------
+canvas.addEventListener("dblclick",onDoubleClick);
+function onDoubleClick(event){
+    const text=textInput.value;
+    if(text!==""){
+        ctx.save();
+        ctx.font="68px serif"; 
+        ctx.lineWidth=1;
+        ctx.fillText(text,event.offsetX,event.offsetY);//dbclick한 곳에 택스트 그린다.
+        ctx.restore();
+    }
+}
+
+
+//Save Image-----------------------------------------------------------------------
+saveBtn.addEventListener("click",onSaveClick);
+function onSaveClick(event){
+    const url=canvas.toDataURL(); //그린 데이터를 URL로 바꿔준다.
+    const a=document.createElement("a"); //HTML a tag를 만들어 내고 
+    a.href=url;    //a tag 링크 생성
+    a.download="myDrawing.png";    //a tag 링크 다운로드
+    a.click(); //a  링크 클릭 ->파일 다운로드
+}

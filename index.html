@@ -8,10 +8,8 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <canvas></canvas>
-    <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"/>line width
+    <div class="color-options">  
     <input type="color" id="color" />
-    <div>
     <div class="color-option" style="background-color:#81ecec" data-color="#81ecec"> </div>
     <div class="color-option" style="background-color:#74b9ff" data-color="#74b9ff"> </div>
     <div class="color-option" style="background-color:#a29bfe" data-color="#a29bfe"> </div>
@@ -22,11 +20,25 @@
     <div class="color-option" style="background-color:#ffeaa7" data-color="#ffeaa7"> </div>
     <div class="color-option" style="background-color:#2d3436 " data-color="#2d3436"> </div>
     
-</div>
-<button id="mode-btn">Fill</button>
-<button id="destroy-btn">Destroy</button>
-<button id="erase-btn">Erase</button>
-<input type="file" accept="image/*" id="file" />
-</body>
+    </div>
+    
+    <canvas></canvas>
+    
+    
+    <div class="btns">
+    <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"/>
+    <button id="mode-btn">🎨Fill</button>
+    <button id="destroy-btn">💣Destroy</button>
+    <button id="erase-btn">❌Erase</button>
+    <label for="file">
+        🖼Add Photo
+        <input type="file" accept="image/*" id="file" />
+    </label>
+    <input type="text" placeholder="Write and then double click" id="text">
+    <button id="save">⬇️ Save Image</button>
+    </div>
 <script src="js/app.js"></script>
+</body>
+
 </html>
+
