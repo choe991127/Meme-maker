@@ -1,6 +1,6 @@
 canvas{
-    width:800px;
-    height:800px;
+    width:600px;
+    height:600px;
     background-color: white;
     border-radius:10px;
     padding: 20px;
@@ -13,19 +13,27 @@ canvas{
     display:flex;
     flex-direction: column;
     gap:20px;
+    background-color: #A6A4F3;
 }
 .color-options{
+    width:200px;
+    height:700px;
+    background-color: #A6A4F3;
     display:flex;
     flex-direction: column;
     gap:20px;
     align-items: center;
+    margin-top: 40px;
+    border-radius: 10px;
+    
 }
 .color-option{
+    
     width:50px;
     height:50px;
     cursor:pointer;
     border-radius:50%;
-    border:5px solid white;
+    border:2px solid white;
     transition:transform ease-in-out .3s;
 }
 .color-option:hover{
@@ -70,3 +78,57 @@ input#file{
     display:none;
 
 }
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 80px;
+}
+.color-tools{
+    display: flex;
+    text-align: center;
+    font-weight:800;
+    font-size: xx-large;
+    color: white;
+
+
+}
+
+.input-color-container {
+    position: relative;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    border: solid 2px #ddd;
+    border-radius: 40px;
+  }
+  
+  .input-color {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 56px;
+    height: 56px;
+    border: none;
+  }
+  
+  .input-color-label {
+    cursor: pointer;
+    text-decoration: underline;
+    color: white;
+    animation: messageScaleAndColor 1s infinite;
+  }
+  
+  @keyframes messageScaleAndColor {
+    0% {
+      transform: none;
+    }
+    50% {
+      transform: scale(1.05);
+      color: #9BC9F9;
+    }
+    100% {
+      transform: none;
+    }
+  }

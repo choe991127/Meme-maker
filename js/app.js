@@ -1,5 +1,5 @@
 const colorOptions=Array.from(document.getElementsByClassName("color-option"));// forEach가 필요해서 이 collection을 Array.from()으로 배열로 바꿈.
-const color=document.getElementById("color");
+const color=document.getElementById("input-color");
 const lineWidth=document.getElementById("line-width");
 const canvas=document.querySelector("canvas");
 const modeBtn=document.getElementById("mode-btn");
@@ -9,8 +9,8 @@ const fileInput=document.getElementById("file");
 const textInput=document.getElementById("text");
 const saveBtn=document.getElementById("save");
 
-const CANVAS_WIDTH=800;
-const CANVAS_HEIGHT=800;
+const CANVAS_WIDTH=600;
+const CANVAS_HEIGHT=600;
 //그림그리기 위해 context 필요하다 기본적 붓이다.
 //context를 자주 써야하기 때문에 쓰기쉬운 ctx로 정의
 //2 option 있다 1번2D 2번webgl,bitmaprenderer 2번은 3D위한것
