@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Maker</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/59b8345854.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="btns">
-    <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"/>
-    <button id="mode-btn">🎨Fill</button>
+    <div class="container_brush">
+        <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"/>
+    </div>
+    <div class="container_shape">
+        <button id="mode-btn"><i class="fa-solid fa-fill-drip"></i></button>
+    </div>
+    
     <label for="file">
         🖼Add Photo
-        <input type="file" accept="image/*" id="file" />
     </label>
+    <input type="file" accept="image/*" id="file" />
     <input type="text" placeholder="Write and double click!" id="text">
     <button id="save">⬇️ Save Image</button>
     </div>
@@ -22,8 +28,10 @@
         <div class="container_canvas">
         <canvas></canvas>
         </div>
-        <button id="destroy-btn">💣Destroy</button>
-        <button id="erase-btn">❌Erase</button>
+        <div class="container_erase">
+        <button id="destroy-btn"><i class="fa-solid fa-bomb"></i></button>
+        <button id="erase-btn"><i class="fa-solid fa-eraser"></i></button>
+        </div>
     </div>
     <div class="color-options">  
         <span class="color-tools">Color Tools</span>
