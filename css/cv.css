@@ -1,13 +1,11 @@
-canvas{
+.canvas{
     width:600px;
     height:600px;
-    background-color: white;
+    
     border-radius:10px;
     padding: 20px;
     border:2px solid #ECCCB2;
-    
-    
-
+    color:white;
 }
 
 .btns{
@@ -91,12 +89,14 @@ input#file{
     align-items: center;
     margin-top: 80px;
 }
-.color-tools{
+.color-tools,
+.draw-tools{
     display: flex;
     text-align: center;
     font-weight:800;
     font-size: xx-large;
     color: white;
+    padding:20px;
 
 
 }
@@ -142,6 +142,7 @@ input#file{
 
 .container_canvas{
     border:2px solid #ECCCB2;
+    background-color: white;
     border-radius: 10px;
     width:600px;
     height:600px;
@@ -152,4 +153,26 @@ input#file{
     margin:60px;
     width:200px;
     font-weight:700;
+}
+.container_brush,.container_shape{
+    border:2px solid white;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+#brush-value{
+    color:white;
+    margin-top: 5px;
+}
+
+.subheading {
+    color:white;
+    margin-right: auto;
+    margin-left: 20px;
+    position: relative;
+    top: -8px;
+    font-weight: 500;
+    background-color:#AAC4FF;
 }

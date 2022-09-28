@@ -8,6 +8,7 @@ const eraserBtn=document.getElementById("erase-btn");
 const fileInput=document.getElementById("file");
 const textInput=document.getElementById("text");
 const saveBtn=document.getElementById("save");
+const brushValue=document.getElementById("brush-value");
 
 const CANVAS_WIDTH=600;
 const CANVAS_HEIGHT=600;
@@ -54,7 +55,7 @@ lineWidth.addEventListener("change",onLineWidthChange);//width조절기 변화�
 function onLineWidthChange(event){
     ctx.beginPath();
     ctx.lineWidth=event.target.value; // change라는 이벤트의 타겟의 value가 변화한거 넣어줌.
-    
+    brushValue.innerText = event.target.value;
 }
 
 //Color--------------------------------------------------------------
@@ -151,3 +152,8 @@ function onSaveClick(event){
     a.download="myDrawing.png";    //a tag 링크 다운로드
     a.click(); //a  링크 클릭 ->파일 다운로드
 }
+
+
+//line width slider view---------------------------------------------------------------------------
+
+

@@ -10,10 +10,17 @@
 </head>
 <body>
     <div class="btns">
+        <span class="draw-tools">Draw Tools</span>
     <div class="container_brush">
-        <input id="line-width" type="range" min="1" max="10" value="5" step="0.5"/>
+        <span class="subheading">BRUSH</span>
+        
+        
+            
+            <span id="brush-value">5</span>
+            <input id="line-width" type="range" min="1" max="10" value="5" step="0.5" onchange="SetValue(this)"/>
     </div>
     <div class="container_shape">
+        <span class="subheading">Shape</span>
         <button id="mode-btn"><i class="fa-solid fa-fill-drip"></i></button>
     </div>
     
@@ -23,16 +30,19 @@
     <input type="file" accept="image/*" id="file" />
     <input type="text" placeholder="Write and double click!" id="text">
     <button id="save">⬇️ Save Image</button>
-    </div>
+    
+</div>
+
     <div class="container">
         <div class="container_canvas">
-        <canvas></canvas>
+        <canvas ></canvas>
         </div>
         <div class="container_erase">
         <button id="destroy-btn"><i class="fa-solid fa-bomb"></i></button>
         <button id="erase-btn"><i class="fa-solid fa-eraser"></i></button>
         </div>
     </div>
+
     <div class="color-options">  
         <span class="color-tools">Color Tools</span>
         <div class="input-color-container">
