@@ -12,7 +12,7 @@
     <div class="btns">
         <span class="draw-tools">Draw Tools</span>
     <div class="container_brush">
-        <span class="subheading">BRUSH</span>
+        <span class="subheading">BRUSH-Width</span>
         
         
             
@@ -21,15 +21,44 @@
     </div>
     <div class="container_shape">
         <span class="subheading">Shape</span>
-        <button id="mode-btn"><i class="fa-solid fa-fill-drip"></i></button>
+        <div class="PaintBtn">
+        <button id="draw-btn"><i class="fa-solid fa-paintbrush"></i></button>
+        <button id="fill-btn"><i class="fa-solid fa-fill-drip"></i></button>
+        <button id="draw_fill-btn"><i class="fa-solid fa-brush"></i></button>
+        <button id="circle-btn"><i class="fa-solid fa-circle"></i></button>
+        </div>
     </div>
     
-    <label for="file">
-        🖼Add Photo
-    </label>
-    <input type="file" accept="image/*" id="file" />
-    <input type="text" placeholder="Write and double click!" id="text">
-    <button id="save">⬇️ Save Image</button>
+    
+    <div class="container_text">
+        <span class="subheading">Text</span>
+        <div>
+            <select name="font" id="font">
+                <option value="Noto Sans Korean">Noto Sans Korean</option>
+                <option value="Nanum Myeongjo">Nanum Myeongjo</option>
+                <option value="Nanum Pen Script">Nanum Pen Script</option>
+            </select>
+            <input id="font-size" type="number" value="30" min="1" max="100" >
+            
+        </div>
+        
+        <input type="text" placeholder="Write and Double Click!" id="text">
+        
+    
+    </div>
+    
+    <div class="container_file">
+        <span class="cutline">------------------------------------</span>
+        <span class="file-title">File</span>
+        <div class="file_box">
+        <label for="file">
+            Add Photo
+        </label>
+        <input type="file" accept="image/*" id="file" />
+    </div>
+        <button id="save">Save Image<i class="fa-sharp fa-solid fa-down-to-bracket"></i></button>
+        
+    </div>
     
 </div>
 

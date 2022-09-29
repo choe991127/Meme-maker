@@ -1,14 +1,26 @@
+
+
+
 const colorOptions=Array.from(document.getElementsByClassName("color-option"));// forEach가 필요해서 이 collection을 Array.from()으로 배열로 바꿈.
 const color=document.getElementById("input-color");
 const lineWidth=document.getElementById("line-width");
 const canvas=document.querySelector("canvas");
-const modeBtn=document.getElementById("mode-btn");
 const destroyBtn=document.getElementById("destroy-btn");
 const eraserBtn=document.getElementById("erase-btn");
 const fileInput=document.getElementById("file");
 const textInput=document.getElementById("text");
 const saveBtn=document.getElementById("save");
-const brushValue=document.getElementById("brush-value");
+const brushValue=document.getElementById("brush-value")
+
+
+const fillbtn=document.getElementById("fill-btn");
+const drawbtn=document.getElementById("draw-btn");
+const dfbtn=document.getElementById("draw_fill-btn");
+const circlebtn=document.getElementById("circle-btn");
+
+const font = document.getElementById("font");
+const fontSize = document.getElementById("font-size");
+
 
 const CANVAS_WIDTH=600;
 const CANVAS_HEIGHT=600;
@@ -22,27 +34,85 @@ canvas.width=CANVAS_WIDTH;
 canvas.height=CANVAS_HEIGHT;
 ctx.lineWidth=lineWidth.value; 
 ctx.lineCap="round";  //선의 끝이 둥글게 만든다.
-// Painting --------------------------------------------------------
+
+//Painting mode
+let mod=0;
 let isPainting=false;
-function onMove(event){
+
+function onDrawMod(){
+    mod=0;
     
+}
+function onFillMod(){
+    mod=1;
+    
+}
+function onDfMod(){
+    mod=2;
+    
+}
+function onCircleMod(){
+    mod=3;
+}
+
+
+
+
+function onMove(event){
+    if(mod===0||mod===2){
     if(isPainting){
         
         ctx.lineTo(event.offsetX,event.offsetY);
         ctx.stroke();
         return;
     }
+    
     ctx.moveTo(event.offsetX,event.offsetY);//isPainting이 꺼져있을 경우 마우스 만 움직이는것.
+    }
+    if(mod===3){
+        if(isPainting){
+        ctx.arc(startX, startY, event.offsetX - startX, 0, 2 * Math.PI);
+        ctx.fill(); //draw circle
+        return;
+        }
+    }
 }
-
-function startingPainting(){ //마우스 눌렀을때 그리기 활성화
+function startingPainting(event){ //마우스 눌렀을때 그리기 활성화
     isPainting=true;
+    startX = event.offsetX;
+    startY = event.offsetY;
     ctx.beginPath();
     
 }
 function cancelPanting(){//마우스 땠을때 그리기 비활성화
     isPainting=false;
+    if(mod===2){
+        ctx.fill();
+    }
 }
+
+    function onCanvasClick(event){
+        if(mod==1){
+        ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+    }
+}
+
+
+
+
+canvas.addEventListener("click",onCanvasClick); //채우기
+drawbtn.addEventListener("click",onDrawMod);
+fillbtn.addEventListener("click",onFillMod);
+dfbtn.addEventListener("click",onDfMod);
+circlebtn.addEventListener("click",onCircleMod);
+
+
+
+
+
+// Painting --------------------------------------------------------
+
+
 
 canvas.addEventListener("mousemove",onMove);
 canvas.addEventListener("mousedown",startingPainting);
@@ -76,26 +146,17 @@ function onColorCLick(event){
 }
 
 //fill color------------------------------------------------------------
-let isFilling=false;
 
-function onModeClick(event){
-    if(isFilling){
-        isFilling=false
-        modeBtn.innerText="Fill"
-    }else{
-        isFilling=true
-        modeBtn.innerText="Draw"
-    }
-}
-modeBtn.addEventListener("click",onModeClick);
 
 canvas.addEventListener("click",onCanvasClick); //채우기
-function onCanvasClick(event){
-    if(isFilling){
-        ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
-    }
-}
 
+function onCanvasClick(event){
+    if(mod===1){
+    
+        ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+    
+    }      
+}
 //eraser--------------------------------------------------------------
 destroyBtn.addEventListener("click",onDestroyClick);
 function onDestroyClick(event){
@@ -109,8 +170,8 @@ eraserBtn.addEventListener("click",onEraserClick);
 
 function onEraserClick(event){
     ctx.strokeStyle="white";
-    isFilling=false;
-    modeBtn.innerText="Fill";
+    mod=0;
+    
     color.value="#ffffff";// erase모드 일 때 색에 혼동을 줄이기위해 표시되는 색을 white로 만듬.
     }
 
@@ -133,10 +194,11 @@ function onFileChange(event){
 canvas.addEventListener("dblclick",onDoubleClick);
 function onDoubleClick(event){
     const text=textInput.value;
-    if(text!==""){
+    if(text!=="" ){
         ctx.save();
-        ctx.font="68px serif"; 
+        mod=4;
         ctx.lineWidth=1;
+        ctx.font = `${fontSize.value}px ${font.value}`;
         ctx.fillText(text,event.offsetX,event.offsetY);//dbclick한 곳에 택스트 그린다.
         ctx.restore();
     }
@@ -153,7 +215,7 @@ function onSaveClick(event){
     a.click(); //a  링크 클릭 ->파일 다운로드
 }
 
+//draw circle---------------------------------------------------------
 
-//line width slider view---------------------------------------------------------------------------
 
 

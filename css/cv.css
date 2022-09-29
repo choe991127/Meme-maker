@@ -73,6 +73,7 @@ input#text{
     font-weight:500;
     text-align:center;
     background-color: white;
+    margin-bottom: 15px;
 
 }
 
@@ -80,10 +81,11 @@ input#file{
     
     display:none;
 
+    
+
 }
 .container{
     display: flex;
-    
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -154,7 +156,7 @@ input#file{
     width:200px;
     font-weight:700;
 }
-.container_brush,.container_shape{
+.container_brush,.container_shape,.container_text{
     border:2px solid white;
     display:flex;
     flex-direction: column;
@@ -176,3 +178,50 @@ input#file{
     font-weight: 500;
     background-color:#AAC4FF;
 }
+
+#fill-btn,#draw-btn,#draw_fill-btn,#circle-btn
+{
+    width:50px;
+    height:30px;
+    margin-bottom: 20px;
+}
+
+
+.file_box{
+    
+    display:flex;
+    padding:20px;
+    background-color: #B1B2FF;
+    width:260px;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    
+}
+#save{
+    
+    width:300px;
+    height:40px;
+    margin-bottom: 30px;
+}
+.file-title{
+    color:white;
+    margin-right: auto;
+    margin-left: 20px;
+    top: -8px;
+    font-weight: 500;
+    
+}
+.cutline{
+    display:flex;
+    color:white;
+    padding:20px;
+    font-weight: 700;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
